@@ -3,542 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/tp 2.png">
     <title>TefiPay - Seamless Contactless Payments in Africa</title>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <link rel="stylesheet" href="/STYLE/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/dist/vanta.waves.min.js"></script>
 
-        :root {
-            --blur-bg: rgba(255, 255, 255, 0.1);
-            --blur-border: rgba(255, 255, 255, 0.2);
-        }
-
-        body {
-            font-family: 'Lexend', sans-serif;
-            background-color: #000;
-            color: #fff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Navbar styles */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            background: rgba(0, 0, 0, 0.5);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            list-style: none;
-        }
-
-        .nav-link {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: opacity 0.3s ease;
-        }
-
-        .nav-link:hover {
-            opacity: 0.7;
-        }
-
-        .nav-cta {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 0.75rem 1.5rem;
-            border-radius: 100px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .nav-cta:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Hero section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top right, rgba(168, 85, 247, 0.2), transparent 60%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 650px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2.5rem;
-            font-weight: 400;
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            background: #fff;
-            color: #000;
-            padding: 1rem 2rem;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: transform 0.3s ease;
-        }
-
-        .hero-cta:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Feature cards */
-        .features {
-            padding: 8rem 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .feature-card p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .feature-icon {
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 100px;
-            height: 100px;
-            opacity: 0.1;
-            transition: all 0.5s ease;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.2) rotate(10deg);
-            opacity: 0.2;
-        }
-
-        /* How It Works section */
-        .how-it-works {
-            padding: 8rem 0;
-            background: linear-gradient(to bottom, #000, #1a0b2e);
-        }
-
-        .how-it-works h2 {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 4rem;
-            background: linear-gradient(to right, #fff, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .steps {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-
-        .step {
-            flex-basis: calc(33.333% - 2rem);
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .step:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .step-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #a855f7, #6b21a8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .step h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .step p {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Coming Soon section */
-        .coming-soon {
-            padding: 8rem 0;
-            background: linear-gradient(to bottom, #1a0b2e, #000);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .coming-soon h2 {
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .coming-soon p {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .countdown-item {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 1.5rem;
-            min-width: 120px;
-        }
-
-        .countdown-number {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .countdown-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .notify-form {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .notify-input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 100px;
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
-            color: #fff;
-            width: 300px;
-        }
-
-        .notify-button {
-            background: #a855f7;
-            color: #fff;
-            border: none;
-            border-radius: 100px;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .notify-button:hover {
-            background: #9333ea;
-        }
-
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .particle {
-            position: absolute;
-            background: #a855f7;
-            border-radius: 50%;
-            opacity: 0.3;
-        }
-
-        /* Animating icons */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .feature-icon.float {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .feature-icon.pulse {
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .feature-icon.spin {
-            animation: spin 10s linear infinite;
-        }
-
-        /* Waitlist section */
-        .waitlist {
-            padding: 8rem 0;
-            background: linear-gradient(to bottom right, rgba(168, 85, 247, 0.1), transparent);
-        }
-
-        .waitlist-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .waitlist h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
-        .waitlist-form {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2.5rem;
-        }
-
-        .waitlist-input {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1rem 1.5rem;
-            border-radius: 100px;
-            color: #fff;
-            font-family: 'Lexend', sans-serif;
-            font-size: 1rem;
-        }
-
-        .waitlist-input:focus {
-            outline: none;
-            border-color: rgba(168, 85, 247, 0.5);
-        }
-
-        .waitlist-button {
-            background: #fff;
-            color: #000;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 100px;
-            font-family: 'Lexend', sans-serif;
-            font-weight: 500;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .waitlist-button:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .navbar-container {
-                height: 70px;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero p {
-                font-size: 1.125rem;
-            }
-
-            .waitlist-form {
-                flex-direction: column;
-            }
-
-            .waitlist-button {
-                width: 100%;
-            }
-
-            .step {
-                flex-basis: 100%;
-                margin-bottom: 2rem;
-            }
-
-            .countdown {
-                flex-wrap: wrap;
-            }
-
-            .countdown-item {
-                flex-basis: calc(50% - 1rem);
-                margin-bottom: 1rem;
-            }
-
-            .notify-form {
-                flex-direction: column;
-            }
-
-            .notify-input,
-            .notify-button {
-                width: 100%;
-            }
-        }
-
-        /* Mobile menu button */
-        .menu-button {
-            display: none;
-            background: none;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-        .menu-button svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .menu-button:hover svg {
-            opacity: 0.7;
-        }
-
-        @media (max-width: 768px) {
-            .menu-button {
-                display: block;
-            }
-
-            .nav-menu.active {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(0, 0, 0, 0.95);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-                padding: 2rem;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-        }
-    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -554,20 +24,21 @@
             <ul class="nav-menu">
                 <li><a href="#personal" class="nav-link">Personal</a></li>
                 <li><a href="#business" class="nav-link">Business</a></li>
-                <li><a href="#tefipay18" class="nav-link">TefiPay&lt;18</a></li>
+                <li><a href="/e-wallet.html" class="nav-link">E-Wallet</a></li>
                 <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
                 <li><a href="#coming-soon" class="nav-link">Coming Soon</a></li>
-                <li><a href="join-waitlist.html" class="nav-link nav-cta">Join the Waitlist</a></li>
+                <li><a href="/join-waitlist.html" class="nav-link nav-cta">Join the Waitlist</a></li>
             </ul>
         </div>
     </nav>
 
     <section class="hero">
+        <div id="vanta-canvas"></div>
         <div class="container">
             <div class="hero-content">
                 <h1>The future of payments in Africa</h1>
                 <p>Experience seamless contactless payments and digital banking designed for the modern African lifestyle.</p>
-                <a href="join-waitlist.html" class="hero-cta" >Get started — it's free</a>
+                <a href="#waitlist" class="hero-cta">Get started — it's free</a>
             </div>
         </div>
     </section>
@@ -648,23 +119,35 @@
                 </div>
             </div>
             <form class="notify-form">
-                <input type="email" placeholder="Enter your email" required class="notify-input">
-                <button type="submit" class="notify-button" href="/join-waitlist.html">Notify Me</button>
+              <input type="email" placeholder="Enter your email" required class="notify-input">
+              <button type="submit" class="notify-button">Notify Me</button>
             </form>
         </div>
         <div class="particles" id="particles"></div>
     </section>
-
+<!--
     <section class="waitlist">
         <div class="container waitlist-container">
             <h2>Join the future of banking</h2>
             <p>Be among the first to experience TefiPay's revolutionary banking platform.</p>
-            <form class="waitlist-form">
-                <input type="email" placeholder="Enter your email" required class="waitlist-input">
-                <button type="submit" class="waitlist-button" href="/join-waitlist.html">Join Waitlist</button>
+            <form class="waitlist-form" id="waitlistForm">
+              <input type="text" id="name" placeholder="Full Name" required class="waitlist-input">
+              <input type="email" id="email" placeholder="Email Address" required class="waitlist-input">
+              <input type="tel" id="phone" placeholder="Phone Number" class="waitlist-input">
+              <button type="submit" class="waitlist-button">Join Waitlist</button>
             </form>
         </div>
     </section>
+
+-->
+
+    <div class="alert-card" id="alertCard">
+        <button class="alert-card-close">&times;</button>
+        <h3 class="alert-card-title">Success!</h3>
+        <p class="alert-card-message"></p>
+    </div>
+
+    
 
     <script>
         // Mobile menu toggle
@@ -699,7 +182,7 @@
         });
 
         // Countdown timer
-        const countdownDate = new Date().getTime() + 120 * 24 * 60 * 60 * 1000; // 120 days from now
+        const countdownDate = new Date().getTime() + 119 * 24 * 60 * 60 * 1000; // 30 days from now
         const countdown = setInterval(function() {
             const now = new Date().getTime();
             const distance = countdownDate - now;
@@ -719,6 +202,23 @@
                 document.getElementById("countdown").innerHTML = "EXPIRED";
             }
         }, 1000);
+
+        // Vanta.js background animation
+        VANTA.NET({
+            el: "#vanta-canvas",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xa855f7,
+            backgroundColor: 0x0,
+            points: 8.00,
+            maxDistance: 20.00,
+            spacing: 18.00
+        });
 
         // Particle animation
         function createParticles() {
@@ -745,38 +245,12 @@
 
         createParticles();
 
-        fetch('http://localhost:1337/api/waitlist')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  });
-
-
     </script>
-
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyDlS7-WKloQq0_p7sIJ6Gfh0pw3z86AHmw",
-      authDomain: "tefipay-ba888.firebaseapp.com",
-      projectId: "tefipay-ba888",
-      storageBucket: "tefipay-ba888.firebasestorage.app",
-      messagingSenderId: "801163667947",
-      appId: "1:801163667947:web:9d8b7d3a685842973bd1ae",
-      measurementId: "G-YTXNJW4SEF"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script>
-
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="firebase-integration.js"></script>    
+    <script src="/JS/main.js"></script>
+    
 </body>
 </html>
